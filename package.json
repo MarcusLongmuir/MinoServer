@@ -8,7 +8,8 @@
     "request": "*",
     "connect": "2.x",
     "tracer": "*",
-    "minodb": "*"
+    "minodb": "*",
+    "extend": "MarcusLongmuir/extend"
   },
   "devDependencies": {
     "gulp-nodemon" : "*",
