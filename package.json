@@ -9,7 +9,8 @@
     "connect": "2.x",
     "tracer": "*",
     "extend": "MarcusLongmuir/extend",
-    "minodb": "git+https://bestan:09915eb57c27b7417bc43e2735ab93890c76e4c9@github.com/MarcusLongmuir/MinoDB.git#develop"
+    "minodb": "git+https://bestan:09915eb57c27b7417bc43e2735ab93890c76e4c9@github.com/MarcusLongmuir/MinoDB.git#develop",
+    "minoval": "git+https://bestan:09915eb57c27b7417bc43e2735ab93890c76e4c9@github.com/MarcusLongmuir/MinoVal.git"
   },
   "devDependencies": {
     "gulp-nodemon" : "*",

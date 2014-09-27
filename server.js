@@ -27,6 +27,13 @@ server.use(express.errorHandler());
 
 server.use('/mino/', mino.server())
 
+// var MinoVal = require('minoval');
+// var minoval = new MinoVal(mino);
+
+// server.use('/minoval/', minoval.endpoint_server());
+// server.use('/minoval/', minoval.example_server());
+
+
 // mino.api.connect(function(){
 // 	mino.api.call({username:"TestUser"},{
 // 		"function": "get",
