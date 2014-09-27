@@ -25,8 +25,7 @@ server.set('view engine', 'jade')
 server.use(express.static(path.join(__dirname, '../public')));;
 server.use(express.errorHandler());
 
-server.use('/api/', mino.api_server())
-server.use('/ui/', mino.ui_server())
+server.use('/mino/', mino.server())
 
 // mino.api.connect(function(){
 // 	mino.api.call({username:"TestUser"},{
