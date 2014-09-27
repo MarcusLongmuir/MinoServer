@@ -1,0 +1,7 @@
+{
+  "name": "MinoServer",
+  "description": "This app is an example of using MinoDB and MinoVal",
+  "addons": [
+    "mongolab"
+  ]
+}
