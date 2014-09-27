@@ -5,10 +5,11 @@ var http = require('http');
 var path = require('path');
 
 var MinoDB = require('minodb');
+var db_address = process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/minodb';
 var mino = new MinoDB({
     api: true,
     ui: true,
-    db_address: 'mongodb://127.0.0.1:27017/minodb'
+    db_address: db_address
 })
 
 mino.add_field_type({
