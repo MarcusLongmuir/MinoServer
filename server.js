@@ -3,6 +3,7 @@ var express = require('express');
 var connect = require('connect');
 var http = require('http');
 var path = require('path');
+var bodyParser = require('body-parser');
 
 var MinoDB = require('minodb');
 var db_address = process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/minodb';
@@ -22,8 +23,8 @@ var server = express();
 server.set('port', process.env.PORT || 5002);
 server.set('views', path.join(__dirname, 'views'));
 server.set('view engine', 'jade')
-server.use(express.static(path.join(__dirname, '../public')));;
 server.use(express.errorHandler());
+server.use(bodyParser());
 
 server.use('/mino/', mino.server())
 
