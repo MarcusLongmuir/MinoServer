@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "express": "*",
+    "errorhandler": "*",
     "jade": "1.1.5",
     "request": "*",
     "connect": "2.x",
