@@ -31,8 +31,8 @@ server.use('/mino/', mino.server())
 var MinoVal = require('minoval');
 var minoval = new MinoVal(mino);
 
+server.use('/minoval/example/', minoval.example_server());
 server.use('/minoval/', minoval.endpoint_server());
-server.use('/minoval/', minoval.example_server());
 
 
 // mino.api.connect(function(){
