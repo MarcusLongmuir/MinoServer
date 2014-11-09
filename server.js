@@ -5,6 +5,7 @@ var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
+var mustacheExpress = require('mustache-express');
 
 var MinoDB = require('minodb');
 var db_address = process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/minodb';
@@ -13,6 +14,9 @@ var mino = new MinoDB({
     ui: true,
     db_address: db_address
 })
+var MinoSDK = require('minosdk');
+var sdk = new MinoSDK("testuser");
+sdk.set_local_api(mino.api);
 
 mino.add_field_type({
 	name: "custom_field",
@@ -22,37 +26,31 @@ mino.add_field_type({
 
 var server = express();
 server.set('port', process.env.PORT || 5002);
+var mustache_engine = mustacheExpress();
+delete mustache_engine.cache;
+server.engine('mustache', mustache_engine);
 server.set('views', path.join(__dirname, 'views'));
-server.set('view engine', 'jade')
+server.set('view engine', 'mustache');
 server.use(errorHandler());
 server.use(bodyParser());
-
 server.use('/mino/', mino.server())
 
-var MinoVal = require('minoval');
-var minoval = new MinoVal(mino);
-
-server.use('/minoval/example/', minoval.example_server());
-server.use('/minoval/', minoval.endpoint_server());
-
-
-// mino.api.connect(function(){
-// 	mino.api.call({username:"TestUser"},{
-// 		"function": "get",
-// 		parameters:{
-// 			addresses:[
-// 				"/TestUser/People/Marcus Longmuir",
-// 				"person"
-// 			]
-// 		}
-// 	},function(err,res){
-// 		logger.log(err);
-// 		logger.log(JSON.stringify(res,null,4));
-// 	})
-// })
+server.use('/get', function(req, res){
+	sdk.get([
+    	"/testuser/",
+    	"/testuser/another/2"
+    ],function(api_err, api_res){
+	    res.json(api_res);
+	})
+})
 
 server.get('/*', function(req, res) {
-    res.render('index');
+    // res.render('index');
+    sdk.search([
+    	"/testuser/"
+    ],function(api_err, api_res){
+	    res.json(api_res);
+	})
 })
 
 http.createServer(server).listen(server.get('port'), function() {
